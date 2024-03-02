@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{032A7E9F-9621-4D68-99CE-FDF3E4BEBE68}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FhirIntermediateMaEx</RootNamespace>
+    <AssemblyName>FhirIntermediateMaEx</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Hl7.Fhir.ElementModel, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hl7.Fhir.ElementModel.1.4.0\lib\net45\Hl7.Fhir.ElementModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Hl7.Fhir.R4.Core, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hl7.Fhir.R4.1.4.0\lib\net45\Hl7.Fhir.R4.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hl7.Fhir.Serialization, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hl7.Fhir.Serialization.1.4.0\lib\net45\Hl7.Fhir.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Hl7.Fhir.Support, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hl7.Fhir.Support.1.4.0\lib\net45\Hl7.Fhir.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="Hl7.Fhir.Support.Poco, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hl7.Fhir.Support.Poco.1.4.0\lib\net45\Hl7.Fhir.Support.Poco.dll</HintPath>
+    </Reference>
+    <Reference Include="Hl7.FhirPath, Version=1.4.0.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hl7.FhirPath.1.4.0\lib\net45\Hl7.FhirPath.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllSolutions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllSolutions.Designer.cs">
+      <DependentUpon>AllSolutions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EX_C05_CreatePractitionerInstance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EX_C05_CreatePractitionerInstance.Designer.cs">
+      <DependentUpon>EX_C05_CreatePractitionerInstance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EX_C06_UpdatePractitionerInstance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EX_C06_UpdatePractitionerInstance.Designer.cs">
+      <DependentUpon>EX_C06_UpdatePractitionerInstance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EX_C10_ExploreIPSCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EX_C10_ExploreIPSCondition.Designer.cs">
+      <DependentUpon>EX_C10_ExploreIPSCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EX_C11_PopulateCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EX_C11_PopulateCondition.Designer.cs">
+      <DependentUpon>EX_C11_PopulateCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EX_C12_PopulatePatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EX_C12_PopulatePatient.Designer.cs">
+      <DependentUpon>EX_C12_PopulatePatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EX_C31_CreateIPSDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EX_C31_CreateIPSDocument.Designer.cs">
+      <DependentUpon>EX_C31_CreateIPSDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EX_C39_ProcessSearchBundleEntries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EX_C39_ProcessSearchBundleEntries.Designer.cs">
+      <DependentUpon>EX_C39_ProcessSearchBundleEntries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EX_C40_SearchPractitioner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EX_C40_SearchPractitioner.Designer.cs">
+      <DependentUpon>EX_C40_SearchPractitioner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C01_Skeleton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C01_Skeleton.Designer.cs">
+      <DependentUpon>MA_C01_Skeleton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C02_Authentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C02_Authentication.Designer.cs">
+      <DependentUpon>MA_C02_Authentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C03_ChangeEncoding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C03_ChangeEncoding.Designer.cs">
+      <DependentUpon>MA_C03_ChangeEncoding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C04_ReadVariants.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C04_ReadVariants.Designer.cs">
+      <DependentUpon>MA_C04_ReadVariants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C05_CreatePatientInstance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C05_CreatePatientInstance.Designer.cs">
+      <DependentUpon>MA_C05_CreatePatientInstance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C06_UpdatePatientInstance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C06_UpdatePatientInstance.Designer.cs">
+      <DependentUpon>MA_C06_UpdatePatientInstance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C07_DeletePatientInstance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C07_DeletePatientInstance.Designer.cs">
+      <DependentUpon>MA_C07_DeletePatientInstance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C08_ServerCapabilityStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C08_ServerCapabilityStatement.Designer.cs">
+      <DependentUpon>MA_C08_ServerCapabilityStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C09_ExecuteOperationEverything.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C09_ExecuteOperationEverything.Designer.cs">
+      <DependentUpon>MA_C09_ExecuteOperationEverything.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C10_PatientConditionalCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C10_PatientConditionalCreation.Designer.cs">
+      <DependentUpon>MA_C10_PatientConditionalCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C11_TerminologyCodeLookup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C11_TerminologyCodeLookup.Designer.cs">
+      <DependentUpon>MA_C11_TerminologyCodeLookup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C12_ExpandValueSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C12_ExpandValueSet.Designer.cs">
+      <DependentUpon>MA_C12_ExpandValueSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C13_ValuesetValidate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C13_ValuesetValidate.Designer.cs">
+      <DependentUpon>MA_C13_ValuesetValidate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C14_ResourceValidate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C14_ResourceValidate.Designer.cs">
+      <DependentUpon>MA_C14_ResourceValidate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C15_PopulatePatientObservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C15_PopulatePatientObservation.Designer.cs">
+      <DependentUpon>MA_C15_PopulatePatientObservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C16_PopulateAllergyIntolerance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C16_PopulateAllergyIntolerance.Designer.cs">
+      <DependentUpon>MA_C16_PopulateAllergyIntolerance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C17_ExtractInfoIPSObservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C17_ExtractInfoIPSObservation.Designer.cs">
+      <DependentUpon>MA_C17_ExtractInfoIPSObservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C18_CreatePatientWithExtensions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C18_CreatePatientWithExtensions.Designer.cs">
+      <DependentUpon>MA_C18_CreatePatientWithExtensions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C19_ExtractArgonautExtensions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C19_ExtractArgonautExtensions.Designer.cs">
+      <DependentUpon>MA_C19_ExtractArgonautExtensions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C20_CreateTransactionBundle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C20_CreateTransactionBundle.Designer.cs">
+      <DependentUpon>MA_C20_CreateTransactionBundle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C21_CreateIPSDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C21_CreateIPSDocument.Designer.cs">
+      <DependentUpon>MA_C21_CreateIPSDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C22_IncludeContainedResource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C22_IncludeContainedResource.Designer.cs">
+      <DependentUpon>MA_C22_IncludeContainedResource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C23_ProcessBundleEntries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C23_ProcessBundleEntries.Designer.cs">
+      <DependentUpon>MA_C23_ProcessBundleEntries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C24_ParsePatientXMLFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C24_ParsePatientXMLFile.Designer.cs">
+      <DependentUpon>MA_C24_ParsePatientXMLFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C25_ProfileValidation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C25_ProfileValidation.Designer.cs">
+      <DependentUpon>MA_C25_ProfileValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C26_SerializationOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C26_SerializationOptions.Designer.cs">
+      <DependentUpon>MA_C26_SerializationOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MA_C27_SearchPatients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MA_C27_SearchPatients.Designer.cs">
+      <DependentUpon>MA_C27_SearchPatients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AllSolutions.resx">
+      <DependentUpon>AllSolutions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EX_C05_CreatePractitionerInstance.resx">
+      <DependentUpon>EX_C05_CreatePractitionerInstance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EX_C06_UpdatePractitionerInstance.resx">
+      <DependentUpon>EX_C06_UpdatePractitionerInstance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EX_C10_ExploreIPSCondition.resx">
+      <DependentUpon>EX_C10_ExploreIPSCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EX_C11_PopulateCondition.resx">
+      <DependentUpon>EX_C11_PopulateCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EX_C12_PopulatePatient.resx">
+      <DependentUpon>EX_C12_PopulatePatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EX_C31_CreateIPSDocument.resx">
+      <DependentUpon>EX_C31_CreateIPSDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EX_C39_ProcessSearchBundleEntries.resx">
+      <DependentUpon>EX_C39_ProcessSearchBundleEntries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EX_C40_SearchPractitioner.resx">
+      <DependentUpon>EX_C40_SearchPractitioner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C01_Skeleton.resx">
+      <DependentUpon>MA_C01_Skeleton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C02_Authentication.resx">
+      <DependentUpon>MA_C02_Authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C03_ChangeEncoding.resx">
+      <DependentUpon>MA_C03_ChangeEncoding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C04_ReadVariants.resx">
+      <DependentUpon>MA_C04_ReadVariants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C05_CreatePatientInstance.resx">
+      <DependentUpon>MA_C05_CreatePatientInstance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C06_UpdatePatientInstance.resx">
+      <DependentUpon>MA_C06_UpdatePatientInstance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C07_DeletePatientInstance.resx">
+      <DependentUpon>MA_C07_DeletePatientInstance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C08_ServerCapabilityStatement.resx">
+      <DependentUpon>MA_C08_ServerCapabilityStatement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C09_ExecuteOperationEverything.resx">
+      <DependentUpon>MA_C09_ExecuteOperationEverything.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C10_PatientConditionalCreation.resx">
+      <DependentUpon>MA_C10_PatientConditionalCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C11_TerminologyCodeLookup.resx">
+      <DependentUpon>MA_C11_TerminologyCodeLookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C12_ExpandValueSet.resx">
+      <DependentUpon>MA_C12_ExpandValueSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C13_ValuesetValidate.resx">
+      <DependentUpon>MA_C13_ValuesetValidate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C14_ResourceValidate.resx">
+      <DependentUpon>MA_C14_ResourceValidate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C15_PopulatePatientObservation.resx">
+      <DependentUpon>MA_C15_PopulatePatientObservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C16_PopulateAllergyIntolerance.resx">
+      <DependentUpon>MA_C16_PopulateAllergyIntolerance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C17_ExtractInfoIPSObservation.resx">
+      <DependentUpon>MA_C17_ExtractInfoIPSObservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C18_CreatePatientWithExtensions.resx">
+      <DependentUpon>MA_C18_CreatePatientWithExtensions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C19_ExtractArgonautExtensions.resx">
+      <DependentUpon>MA_C19_ExtractArgonautExtensions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C20_CreateTransactionBundle.resx">
+      <DependentUpon>MA_C20_CreateTransactionBundle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C21_CreateIPSDocument.resx">
+      <DependentUpon>MA_C21_CreateIPSDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C22_IncludeContainedResource.resx">
+      <DependentUpon>MA_C22_IncludeContainedResource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C23_ProcessBundleEntries.resx">
+      <DependentUpon>MA_C23_ProcessBundleEntries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C24_ParsePatientXMLFile.resx">
+      <DependentUpon>MA_C24_ParsePatientXMLFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C25_ProfileValidation.resx">
+      <DependentUpon>MA_C25_ProfileValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C26_SerializationOptions.resx">
+      <DependentUpon>MA_C26_SerializationOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MA_C27_SearchPatients.resx">
+      <DependentUpon>MA_C27_SearchPatients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FHIR_RESOURCES\OBSERVATION.XML" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

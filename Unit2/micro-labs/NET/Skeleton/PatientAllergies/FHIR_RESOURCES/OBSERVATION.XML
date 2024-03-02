@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Observation>
+  <id value="IPS-examples-Observation-01-Sub0"/>
+  <meta>
+    <profile
+        value="http://hl7.org/fhir/uv/ips/StructureDefinition/observation-member-laboratory-uv-ips"/>
+  </meta>
+  <text>
+    <status value="generated"/>
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        <b>Generated Narrative with Details</b>
+      </p>
+      <p>
+        <b>id</b>: IPS-examples-Observation-01-Sub0
+      </p>
+      <p>
+        <b>meta</b>:
+      </p>
+      <p>
+        <b>text</b>:
+      </p>
+      <p>
+        <b>status</b>: FINAL
+      </p>
+      <p>
+        <b>category</b>: Laboratory <span style="background: LightGoldenRodYellow">(Details : {http://terminology.hl7.org/CodeSystem/observation-category code 'laboratory' = 'Laboratory)</span>
+      </p>
+      <p>
+        <b>code</b>: ABO and Rh group [Type] in Blood <span style="background: LightGoldenRodYellow">(Details : {LOINC code '882-1' = 'ABO and Rh group [Type] in Blood', given as 'ABO and Rh group [Type] in Blood'})</span>
+      </p>
+      <p>
+        <b>subject</b>: <a href="#patient_IPS-examples-Patient-01">Generated Summary: id: IPS-examples-Patient-01; 574687583; active; Martha DeLarosa ; ph: +31788700800(HOME); FEMALE; birthDate: 01/05/1972</a>
+      </p>
+      <p>
+        <b>value</b>: Blood group A Rh(D) positive <span style="background: LightGoldenRodYellow">(Details : {SNOMED CT code '278149003' = 'Blood group A Rh(D) positive', given as 'Blood group A Rh(D) positive'})</span>
+      </p>
+    </div>
+  </text>
+  <status value="final"/>
+  <category>
+    <coding>
+      <system
+          value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+      <code value="laboratory"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://loinc.org"/>
+      <code value="882-1"/>
+      <display value="ABO and Rh group [Type] in Blood"/>
+    </coding>
+  </code>
+  <subject>
+    <reference
+        value="http://hapi.fhir.org/baseR4/Patient/IPS-examples-Patient-01"/>
+  </subject>
+  <effectiveDateTime value="2015-10-10T09:15:00+01:00"/>
+  <valueCodeableConcept>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="278149003"/>
+      <display value="Blood group A Rh(D) positive"/>
+    </coding>
+  </valueCodeableConcept>
+</Observation>
