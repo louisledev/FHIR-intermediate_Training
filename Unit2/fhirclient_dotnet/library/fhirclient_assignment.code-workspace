@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../fhirclient_dotnet_tests"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
