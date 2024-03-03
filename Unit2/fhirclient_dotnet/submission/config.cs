@@ -17,10 +17,10 @@ namespace fhirclient_dotnet
               "http://fhir.hl7fundamentals.org/r4";
 
         public string StudentId{get;}=
-             "kaminker.diego@gmail.com";
+            "louis@latourdev.net";
         
         public string StudentName{get;}=
-            "Diego Kaminker";    
+            "Louis Latour"; 
         
     }
 

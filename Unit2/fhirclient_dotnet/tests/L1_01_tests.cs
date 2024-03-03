@@ -37,7 +37,7 @@ namespace fhirclient_dotnet_tests
             var MailAndTelecom="Emails:-\nPhones:-\n";
             var fsh=new FetchDemographics();
             var rm=fsh.GetPatientPhoneAndEmail(server,IdentifierSystem,IdentifierValue);
-            Assert.Equal(MailAndTelecom,rm);            
+                Assert.Equal(MailAndTelecom,rm);            
             return rm;
         
         }
