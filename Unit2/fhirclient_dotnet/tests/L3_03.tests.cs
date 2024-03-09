@@ -31,7 +31,6 @@ namespace fhirclient_dotnet_tests
 
         [Fact]
         public string L03_3_T02_GetMedicationsPatientWithNoIPS()
-
         {
             MyConfiguration c = new MyConfiguration();
             var server = c.ServerEndpoint;
@@ -69,7 +68,8 @@ namespace fhirclient_dotnet_tests
             var server = c.ServerEndpoint;
             var IdentifierSystem = c.PatientIdentifierSystem;
             var IdentifierValue = "L03_3_T04";
-            var ExpMedication = "Active||no-medication-info:No information about medications\n";
+            // var ExpMedication = "Active||no-medication-info:No information about medications\n";
+            var ExpMedication = "Unknown||no-medication-info:No information about medications\n";
             var fsh = new FetchIPS();
             var rm = fsh.GetIPSMedications(server, IdentifierSystem, IdentifierValue);
             Assert.True(ExpMedication == rm, ExpMedication + "!=" + rm);

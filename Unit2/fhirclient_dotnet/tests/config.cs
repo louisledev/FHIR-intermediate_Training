@@ -10,8 +10,7 @@ namespace fhirclient_dotnet
             
             Then run the postman collection to setup the server (need to change the variables to point to http://localhost:8080/fhir)
         */
-         // Keep in mind: from chat:
-         // As mentioned above, it works for me using http://hl7-ips-server.org:8080/fhir and for terminology server https://r4.ontoserver.csiro.au/fhir
+         // From Rick in Chat: As mentioned above, it works for me using http://hl7-ips-server.org:8080/fhir and for terminology server https://r4.ontoserver.csiro.au/fhir
          public string ServerEndpoint{get;}= "http://hl7-ips-server.org:8080/fhir";
          // public string ServerEndpoint{get;}= "http://wildfhir4.aegis.net/fhir4-0-1";
          // public string ServerEndpoint{get;}="http://hapi.fhir.org/baseR4";
