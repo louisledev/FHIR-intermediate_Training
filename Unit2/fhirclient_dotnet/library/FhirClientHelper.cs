@@ -53,4 +53,46 @@ public class FhirClientHelper
         }
         return practitioners;
     }
+    
+    public static IEnumerable<Immunization> GetImmunizationsForPatient(string serverEndPoint, string patientId)
+    {
+        var client = new FhirClient(serverEndPoint, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
+        var immunizations = new List<Immunization>();
+        var criteria = new [] { $"patient={patientId}" }; 
+        Bundle bundle = client.Search<Immunization>(criteria);
+        while (bundle != null)
+        {
+            foreach (Bundle.EntryComponent ent in bundle.Entry)
+            {
+                Immunization im = (Immunization)ent.Resource;
+                if (im != null) 
+                {
+                    immunizations.Add(im);
+                }
+            }
+            bundle = client.Continue(bundle, PageDirection.Next);
+        }
+        return immunizations;
+    }
+   
+    public static IEnumerable<MedicationRequest> GetMedicationRequestsForPatient(string serverEndPoint, string patientId)
+    {
+        var client = new FhirClient(serverEndPoint, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
+        var medications = new List<MedicationRequest>();
+        var criteria = new [] { $"patient={patientId}" }; 
+        Bundle bundle = client.Search<MedicationRequest>(criteria);
+        while (bundle != null)
+        {
+            foreach (Bundle.EntryComponent ent in bundle.Entry)
+            {
+                MedicationRequest med = (MedicationRequest)ent.Resource;
+                if (med != null) 
+                {
+                    medications.Add(med);
+                }
+            }
+            bundle = client.Continue(bundle, PageDirection.Next);
+        }
+        return medications;
+    }
 }
