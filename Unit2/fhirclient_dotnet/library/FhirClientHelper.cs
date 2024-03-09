@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
@@ -94,5 +95,41 @@ public class FhirClientHelper
             bundle = client.Continue(bundle, PageDirection.Next);
         }
         return medications;
+    }
+    
+    public static Bundle? GetIPSDocumentForPatient(string serverEndPoint, string patientId)
+    {
+        var client = new FhirClient(serverEndPoint, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
+        var patientLocation = ResourceIdentity.Build("Patient", patientId);
+        
+        Parameters par = new Parameters();  
+        try
+        {
+            Resource? returnedResource = null;
+            returnedResource = client.InstanceOperation(
+                    patientLocation,
+                    "summary",
+                    par,
+                    useGet: true);
+        
+            if (returnedResource is Bundle returnedBundle)
+            {
+                if (returnedBundle.Type != Bundle.BundleType.Document)
+                {
+                    Console.WriteLine($"Returned bundle is not a document, but a {returnedBundle.Type}");
+                    return null;
+                }
+
+                return returnedBundle;
+            }
+
+            Console.WriteLine($"Returned resource is not a bundle, but a {returnedResource?.TypeName}");
+            return null;
+        }
+        catch (FhirOperationException ex)
+        {
+            Console.WriteLine($"Failed to perform instance operation: {ex}");
+            return null;
+        }
     }
 }

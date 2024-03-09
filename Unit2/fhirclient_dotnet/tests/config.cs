@@ -12,16 +12,19 @@ namespace fhirclient_dotnet
         */
          // Keep in mind: from chat:
          // As mentioned above, it works for me using http://hl7-ips-server.org:8080/fhir and for terminology server https://r4.ontoserver.csiro.au/fhir
+         public string ServerEndpoint{get;}= "http://hl7-ips-server.org:8080/fhir";
          // public string ServerEndpoint{get;}= "http://wildfhir4.aegis.net/fhir4-0-1";
          // public string ServerEndpoint{get;}="http://hapi.fhir.org/baseR4";
-         public string ServerEndpoint{get;}="http://localhost:8080/fhir";
+         // public string ServerEndpoint{get;}="http://localhost:8080/fhir";
             
         public string PatientIdentifierSystem{get;}=
             "http://fhirintermediate.org/patient_id";
         
             
-        public string TerminologyServerEndpoint{get;}=
-            "https://snowstorm.ihtsdotools.org/fhir";
+        // public string TerminologyServerEndpoint{get;}= "https://snowstorm.ihtsdotools.org/fhir";
+        public string TerminologyServerEndpoint{get;}= "https://r4.ontoserver.csiro.au/fhir";
+
+        
         public string AssignmentSubmissionFHIRServer{get;}=
               "http://fhir.hl7fundamentals.org/r4";
 

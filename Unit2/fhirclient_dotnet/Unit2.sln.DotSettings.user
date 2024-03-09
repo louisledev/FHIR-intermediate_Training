@@ -1,5 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/louis/Library/Caches/JetBrains/Rider2023.3/resharper-host/temp/Rider/vAny/CoverageData/_Unit2.-1185993066/Snapshot/snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0ed03e0b_002Dd360_002D4f1e_002Da85e_002D80ee2aab69ec/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="L03_3_T03_GetMedicationsPatientWithIPSMeds" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::EB900FDA-4635-40BE-98C5-9B804CFCD71C::net8.0::fhirclient_dotnet_tests.L03_3_GetClinicalDataFromIPS_Tests.L03_3_T03_GetMedicationsPatientWithIPSMeds&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::EB900FDA-4635-40BE-98C5-9B804CFCD71C::net8.0::fhirclient_dotnet_tests.L03_3_GetClinicalDataFromIPS_Tests.L03_3_T05_GetMedicationsPatientWithIPSImmunization&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::EB900FDA-4635-40BE-98C5-9B804CFCD71C::net8.0::fhirclient_dotnet_tests.L03_3_GetClinicalDataFromIPS_Tests.L03_3_T04_GetMedicationsPatientWithIPSNoMeds&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7db50c77_002Dea6e_002D4a6d_002D97d8_002D33d2892a10c9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="L01_1_T03_GetMailAndTelecom_PatientWithPhoneNoMail" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Or&gt;
     &lt;And&gt;
@@ -27,7 +34,12 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9dd0463d_002D6297_002D41ac_002D9999_002D2d6364b13607/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;fi_u2_tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/louis/src/perso/FHIR_Intermediate_Training/Unit2/fhirclient_dotnet/tests" Presentation="&amp;lt;fi_u2_tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e5aa3f27_002Da48e_002D4877_002D9970_002D5c7327c52c6f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a157ceb6_002D24a5_002D4e52_002Da0b1_002D961446d3606e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="L03_3_T04_GetMedicationsPatientWithIPSNoMeds" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::EB900FDA-4635-40BE-98C5-9B804CFCD71C::net8.0::fhirclient_dotnet_tests.L03_3_GetClinicalDataFromIPS_Tests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e5aa3f27_002Da48e_002D4877_002D9970_002D5c7327c52c6f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Or&gt;
     &lt;And&gt;
       &lt;TestAncestor&gt;
