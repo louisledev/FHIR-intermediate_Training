@@ -70,7 +70,14 @@ namespace fhirclient_dotnet
 
             var immunizations = bundle.Entry
                 .Where(e => e.Resource is Immunization)
-                .Select(e => e.Resource as Immunization);
+                .Select(e => e.Resource as Immunization)
+                .Where(i => i.Status != Immunization.ImmunizationStatusCodes.NotDone).ToList();
+
+            if (immunizations.Count == 0)
+            {
+                return "Error:IPS_No_Immunizations";
+            }
+            
             var result = "";
 
             //   "Completed|1998-06-04T00:00:00+02:00|414005006:Diphtheria + Pertussis + Poliomyelitis + Tetanus vaccine\n";
