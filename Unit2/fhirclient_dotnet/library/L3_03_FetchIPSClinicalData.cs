@@ -71,6 +71,7 @@ namespace fhirclient_dotnet
             var immunizations = bundle.Entry
                 .Where(e => e.Resource is Immunization)
                 .Select(e => e.Resource as Immunization)
+                // Comment from Rik: It is true that there is an Immunization but I believe the idea is to check for a status of "not-done". 
                 .Where(i => i.Status != Immunization.ImmunizationStatusCodes.NotDone).ToList();
 
             if (immunizations.Count == 0)
