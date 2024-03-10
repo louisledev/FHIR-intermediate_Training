@@ -15,6 +15,7 @@ namespace fhirclient_dotnet
          // public string ServerEndpoint{get;}= "http://wildfhir4.aegis.net/fhir4-0-1";
          // public string ServerEndpoint{get;}="http://hapi.fhir.org/baseR4";
          // public string ServerEndpoint{get;}="http://localhost:8080/fhir";
+         // public string ServerEndpoint{get;}= "https://server.fire.ly/R4";
             
         public string PatientIdentifierSystem{get;}=
             "http://fhirintermediate.org/patient_id";

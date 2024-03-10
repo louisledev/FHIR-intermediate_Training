@@ -6,6 +6,8 @@ using Hl7.Fhir.Rest;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net.Http;
 
 namespace fhirclient_dotnet_tests
 {
@@ -145,23 +147,49 @@ namespace fhirclient_dotnet_tests
             {
                 o = parser.Parse<Immunization>(JsonImmunization);
             }
-            catch
+            catch (Exception e)
             {
                 aux="Error:Invalid_Immunization_Resource";
             }
 
             if (aux=="")
             {
-                var client = new Hl7.Fhir.Rest.FhirClient(server); 
+                var client = new Hl7.Fhir.Rest.FhirClient(server, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler())); 
                 Hl7.Fhir.Model.FhirUri profile=  new FhirUri("http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization");
             
                 Parameters inParams = new Parameters();
                 inParams.Add("resource", o);
                 OperationOutcome bu = client.ValidateResource(o); 
-                if (bu.Issue[0].Details.Text!="Validation successful, no issues found")
+                if (!bu.Success)
                 {
-                    aux="Error:"+bu.Issue[0].Details.Text;
+                    aux = "Error:";
+                    var issueDetails = new List<string>();
+                    foreach (var issue in bu.Issue)
+                    {
+                        if (!string.IsNullOrEmpty(issue.Details.Text))
+                        {
+                            issueDetails.Add(issue.Details.Text);
+                        }
+                        else if (!string.IsNullOrEmpty(issue.Details.Coding[0].Display))
+                        {
+                            issueDetails.Add(issue.Details.Coding[0].Display);
+                        }
+                        else if (!string.IsNullOrEmpty(issue.Details.Coding[0].Code))
+                        {
+                            issueDetails.Add(issue.Details.Coding[0].Code);
+                        }
+                        else
+                        {
+                            aux += "Unknown Issue";
+                        }
+                    }
+
+                    aux += string.Join(",", issueDetails);
                 }
+                // if (bu.Issue[0].Details.Text!="Validation successful, no issues found")
+                // {
+                //     aux="Error:"+bu.Issue[0].Details.Text;
+                // }
             }
             return aux;
 

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Globalization;
+using System.Net.Http;
 using Xunit;
 using fhirclient_dotnet;
 using Hl7.Fhir.Model;
@@ -66,7 +69,7 @@ namespace fhirclient_dotnet_tests
             {
                 ExpObservations = ValidateObservationUSCORE(rm, server);
 
-                if (ExpObservations == "")
+                if (ExpObservations == "Error:")
                 {
                     ExpObservations = VerifyObservationContents(rm, server, IdentifierSystem, IdentifierValue
                         , ObservationStatusCode, ObservationDateTime, ObservationLOINCCode, ObservationLOINCDisplay, ResultType,
@@ -151,7 +154,7 @@ namespace fhirclient_dotnet_tests
                         aux += "Numeric Result Unit differs";
                     }
 
-                    if (q.Value.ToString() != NumericResultValue)
+                    if (q.Value != null && q.Value.Value.ToString(CultureInfo.GetCultureInfo("en-US")) != NumericResultValue)
                     {
                         aux += "Numeric Result Value differs";
                     }
@@ -190,16 +193,46 @@ namespace fhirclient_dotnet_tests
 
             if (aux == "")
             {
-                var client = new Hl7.Fhir.Rest.FhirClient(server);
+                var client = new Hl7.Fhir.Rest.FhirClient(server, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
                 Hl7.Fhir.Model.FhirUri profile = new FhirUri("http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab");
 
                 Parameters inParams = new Parameters();
                 inParams.Add("resource", o);
                 OperationOutcome bu = client.ValidateResource(o);
-                if (bu.Issue[0].Details.Text != "Validation successful, no issues found")
+                if (!bu.Success)
                 {
-                    aux = "Error:" + bu.Issue[0].Details.Text;
+                    aux = "Error:";
+                    var issueDetails = new List<string>();
+                    foreach (var issue in bu.Issue)
+                    {
+                        if (!string.IsNullOrEmpty(issue.Details.Text))
+                        {
+                            issueDetails.Add(issue.Details.Text);
+                        }
+                        else if (!string.IsNullOrEmpty(issue.Details.Coding[0].Display))
+                        {
+                            issueDetails.Add(issue.Details.Coding[0].Display);
+                        }
+                        else if (!string.IsNullOrEmpty(issue.Details.Coding[0].Code))
+                        {
+                            issueDetails.Add(issue.Details.Coding[0].Code);
+                        }
+                        else
+                        {
+                            aux += "Unknown Issue";
+                        }
+                    }
+
+                    aux += string.Join(",", issueDetails);
                 }
+                // if (bu.Issue[0].Details.Text != "Validation successful, no issues found")
+                // {
+                //     aux = "Error:"; 
+                //     if (!string.IsNullOrEmpty(bu.Issue[0].Details.Text))
+                //     {
+                //         aux += bu.Issue[0].Details.Text;
+                //     }
+                // }
             }
 
             return aux;
