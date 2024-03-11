@@ -1,12 +1,6 @@
-using Hl7.Fhir.Model; 
-using Hl7.Fhir.Rest; 
+using Hl7.Fhir.Rest;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Net.Http; 
-using System.Net.Http.Headers;
 
 namespace fhirclient_dotnet
 {
@@ -16,14 +10,21 @@ namespace fhirclient_dotnet
             string EndPoint,
             string Url,
             string Filter
-
         )
         {
+            var valueSet = FhirClientHelper.ExpandValueSetAsync(EndPoint, new Uri(Url), Filter).Result;
+            if (valueSet == null || valueSet.Expansion == null || valueSet.Expansion.Contains == null|| !valueSet.Expansion.Contains.Any())
+            {
+                return "Error:ValueSet_Filter_Not_Found";
+            }
             
-            string aux="";
-            return aux;
+            string terms = "";
+            foreach (var concept in valueSet.Expansion.Contains)
+            {
+                terms += $"{concept.Code}|{concept.Display}\n";
+            }
 
+            return terms;
         }
-
     }
 }

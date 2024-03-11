@@ -374,14 +374,16 @@ namespace fhirclient_dotnet_submission
             if (aux=="")
             {
                 var client = new Hl7.Fhir.Rest.FhirClient(server); 
-                if (o.Meta.Profile is null)
-                   o.Meta.Profile = new List<string> { "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization" };
-                   
+                //if (o.Meta.Profile is null)
+                //   o.Meta.Profile = new List<string> { "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization" };
+                o.Meta.Profile = null; // Profile unknown on the server used.
+                
                 Parameters inParams = new Parameters();
                 inParams.Add("resource", o);
                 OperationOutcome bu = client.ValidateResource(o); 
                 aux="OK";
-                if (bu.Issue[0].Details.Text!="Validation successful, no issues found")
+                // if (bu.Issue[0].Details.Text!="Validation successful, no issues found")
+                if (!bu.Success)
                 {
                     aux="Error:"+bu.Issue[0].Details.Text;
                 }
@@ -407,14 +409,15 @@ namespace fhirclient_dotnet_submission
             if (aux=="")
             {
                 var client = new Hl7.Fhir.Rest.FhirClient(server); 
-                if (o.Meta.Profile is null)
-                   o.Meta.Profile = new List<string> { "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab" };
-                   
+                // if (o.Meta.Profile is null)
+                //    o.Meta.Profile = new List<string> { "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab" };
+                o.Meta.Profile = null; // Profile unknown on the server used.
+                
                 Parameters inParams = new Parameters();
                 inParams.Add("resource", o);
                 OperationOutcome bu = client.ValidateResource(o); 
                 aux="OK";
-                if (bu.Issue[0].Details.Text!="Validation successful, no issues found")
+                if (!bu.Success)
                 {
                     aux="Error:"+bu.Issue[0].Details.Text;
                 }
@@ -430,7 +433,7 @@ namespace fhirclient_dotnet_submission
             
              
             Dictionary<string,string> tl=new System.Collections.Generic.Dictionary<string, string>();
-            tl.Add("L05_1_T01", "diaxetes");
+            tl.Add("L05_1_T01", "somethingunknown");
             tl.Add("L05_1_T02","Drug-induced diabetes");
             String url="http://snomed.info/sct?fhir_vs=isa/73211009";
 

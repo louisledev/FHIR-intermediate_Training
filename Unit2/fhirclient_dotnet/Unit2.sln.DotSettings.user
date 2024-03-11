@@ -35,13 +35,7 @@
   &lt;Project Location="/Users/louis/src/perso/FHIR_Intermediate_Training/Unit2/fhirclient_dotnet/tests" Presentation="&amp;lt;fi_u2_tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a157ceb6_002D24a5_002D4e52_002Da0b1_002D961446d3606e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="L03_3_T04_GetMedicationsPatientWithIPSNoMeds" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Or&gt;
-    &lt;TestAncestor&gt;
-      &lt;TestId&gt;xUnit::EB900FDA-4635-40BE-98C5-9B804CFCD71C::net8.0::fhirclient_dotnet_tests.L03_3_GetClinicalDataFromIPS_Tests&lt;/TestId&gt;
-      &lt;TestId&gt;xUnit::EB900FDA-4635-40BE-98C5-9B804CFCD71C::net8.0::fhirclient_dotnet_tests.L04_1_CreateUSCoreLabResult_Tests&lt;/TestId&gt;
-    &lt;/TestAncestor&gt;
-    &lt;ProjectFile&gt;EB900FDA-4635-40BE-98C5-9B804CFCD71C/f:L4_02_tests.cs&lt;/ProjectFile&gt;
-  &lt;/Or&gt;
+  &lt;Project Location="/Users/louis/src/perso/FHIR_Intermediate_Training/Unit2/fhirclient_dotnet/tests" Presentation="&amp;lt;fi_u2_tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e5aa3f27_002Da48e_002D4877_002D9970_002D5c7327c52c6f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Or&gt;

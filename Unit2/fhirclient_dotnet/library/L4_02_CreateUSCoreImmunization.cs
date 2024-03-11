@@ -30,6 +30,7 @@ namespace fhirclient_dotnet
             immunization.Meta.Profile = new string[] { "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization" };
 
             immunization.PrimarySource = true;
+            bool result = Enum.TryParse(ImmunizationStatusCode, true, out Immunization.ImmunizationStatusCodes status);
             
             switch (ImmunizationStatusCode)
             {

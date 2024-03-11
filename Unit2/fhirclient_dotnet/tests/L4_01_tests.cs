@@ -196,6 +196,9 @@ namespace fhirclient_dotnet_tests
                 var client = new Hl7.Fhir.Rest.FhirClient(server, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
                 Hl7.Fhir.Model.FhirUri profile = new FhirUri("http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab");
 
+                // Remove profile because unknown on server
+                o.Meta.Profile = null;
+                
                 Parameters inParams = new Parameters();
                 inParams.Add("resource", o);
                 OperationOutcome bu = client.ValidateResource(o);

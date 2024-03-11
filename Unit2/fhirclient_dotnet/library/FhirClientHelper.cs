@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 
@@ -129,6 +130,27 @@ public class FhirClientHelper
         catch (FhirOperationException ex)
         {
             Console.WriteLine($"Failed to perform instance operation: {ex}");
+            return null;
+        }
+    }
+    
+    public static async Task<ValueSet?> ExpandValueSetAsync(string serverEndPoint, Uri valueSet, string filter)
+    {
+        var settings = FhirClientSettings.CreateDefault();
+        settings.PreferredFormat = ResourceFormat.Json;
+        var client = new FhirClient(serverEndPoint, settings, new LoggingHandler(new HttpClientHandler()));
+        try
+        {
+            return await client.ExpandValueSetAsync(identifier: new FhirUri(valueSet), filter: new FhirString(filter));
+        }
+        catch (InvalidOperationException ex)
+        {
+            Console.WriteLine($"Failed to expand value set: {ex.Message}");
+            return null;
+        }
+        catch (FhirOperationException ex)
+        {
+            Console.WriteLine($"Failed to expand value set: {ex.Outcome}");
             return null;
         }
     }
