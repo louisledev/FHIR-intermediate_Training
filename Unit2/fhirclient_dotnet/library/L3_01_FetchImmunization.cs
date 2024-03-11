@@ -13,13 +13,13 @@ namespace fhirclient_dotnet
             string IdentifierValue
         )
         {
-            Patient? patient = FhirClientHelper.GetPatientById(ServerEndPoint, IdentifierSystem, IdentifierValue);
+            Patient? patient = FhirClientHelper.GetPatientByIdAsync(ServerEndPoint, IdentifierSystem, IdentifierValue).Result;
             if (patient == null)
             {
                 return "Error:Patient_Not_Found";
             }
 
-            var immunizations = FhirClientHelper.GetImmunizationsForPatient(ServerEndPoint, patient.Id);
+            var immunizations = FhirClientHelper.GetImmunizationsForPatientAsync(ServerEndPoint, patient.Id).Result;
             if (!immunizations.Any())
             {
                 return "Error:No_Immunizations";

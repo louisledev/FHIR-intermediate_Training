@@ -13,13 +13,13 @@ namespace fhirclient_dotnet
             string IdentifierValue
         )
         {
-            Patient? patient = FhirClientHelper.GetPatientById(ServerEndPoint, IdentifierSystem, IdentifierValue);
+            Patient? patient = FhirClientHelper.GetPatientByIdAsync(ServerEndPoint, IdentifierSystem, IdentifierValue).Result;
             if (patient == null)
             {
                 return "Error:Patient_Not_Found";
             }
 
-            var bundle = FhirClientHelper.GetIPSDocumentForPatient(ServerEndPoint, patient.Id);
+            var bundle = FhirClientHelper.GetIPSDocumentForPatientAsync(ServerEndPoint, patient.Id).Result;
             if (bundle == null)
             {
                 return "Error:No_IPS";
@@ -56,13 +56,13 @@ namespace fhirclient_dotnet
             string IdentifierValue
         )
         {
-            Patient? patient = FhirClientHelper.GetPatientById(ServerEndPoint, IdentifierSystem, IdentifierValue);
+            Patient? patient = FhirClientHelper.GetPatientByIdAsync(ServerEndPoint, IdentifierSystem, IdentifierValue).Result;
             if (patient == null)
             {
                 return "Error:Patient_Not_Found";
             }
 
-            var bundle = FhirClientHelper.GetIPSDocumentForPatient(ServerEndPoint, patient.Id);
+            var bundle = FhirClientHelper.GetIPSDocumentForPatientAsync(ServerEndPoint, patient.Id).Result;
             if (bundle == null)
             {
                 return "Error:No_IPS";

@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Hl7.Fhir.Model;
@@ -11,15 +9,15 @@ namespace fhirclient_dotnet;
 
 public class FhirClientHelper
 {
-    public static Patient? GetPatientById(string serverEndPoint, string identifierSystem, string identifierValue)
+    public static async Task<Patient?> GetPatientByIdAsync(string serverEndPoint, string identifierSystem, string identifierValue)
     {
         var client = new FhirClient(serverEndPoint, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
         Patient? patient= null;
         try
         {
-            Bundle bundle = client.Search<Patient>(new[]
+            Bundle? bundle = await client.SearchAsync<Patient>(new[]
                 { "identifier=" + identifierSystem + "|" + identifierValue });
-            if (bundle.Entry.Count > 0)
+            if (bundle?.Entry.Count > 0)
             {
                 return (Patient)bundle.Entry[0].Resource;
             }
@@ -36,11 +34,11 @@ public class FhirClientHelper
     }
     
 
-    public static IEnumerable<Practitioner> SearchPractitionersByCriteria(string serverEndPoint, string[] criteria)
+    public static async Task<IEnumerable<Practitioner>> SearchPractitionersByCriteriaAsync(string serverEndPoint, string[] criteria)
     {
         var client = new FhirClient(serverEndPoint, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
         var practitioners = new List<Practitioner>();
-        Bundle bundle = client.Search<Practitioner>(criteria);
+        Bundle? bundle = await client.SearchAsync<Practitioner>(criteria);
         while (bundle != null)
         {
             foreach (Bundle.EntryComponent ent in bundle.Entry)
@@ -51,17 +49,17 @@ public class FhirClientHelper
                     practitioners.Add(pr);
                 }
             }
-            bundle = client.Continue(bundle, PageDirection.Next);
+            bundle = await client.ContinueAsync(bundle, PageDirection.Next);
         }
         return practitioners;
     }
     
-    public static IEnumerable<Immunization> GetImmunizationsForPatient(string serverEndPoint, string patientId)
+    public static async Task<IEnumerable<Immunization>> GetImmunizationsForPatientAsync(string serverEndPoint, string patientId)
     {
         var client = new FhirClient(serverEndPoint, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
         var immunizations = new List<Immunization>();
         var criteria = new [] { $"patient={patientId}" }; 
-        Bundle bundle = client.Search<Immunization>(criteria);
+        Bundle? bundle = await client.SearchAsync<Immunization>(criteria);
         while (bundle != null)
         {
             foreach (Bundle.EntryComponent ent in bundle.Entry)
@@ -72,17 +70,17 @@ public class FhirClientHelper
                     immunizations.Add(im);
                 }
             }
-            bundle = client.Continue(bundle, PageDirection.Next);
+            bundle = await client.ContinueAsync(bundle, PageDirection.Next);
         }
         return immunizations;
     }
    
-    public static IEnumerable<MedicationRequest> GetMedicationRequestsForPatient(string serverEndPoint, string patientId)
+    public static async Task<IEnumerable<MedicationRequest>> GetMedicationRequestsForPatientAsync(string serverEndPoint, string patientId)
     {
         var client = new FhirClient(serverEndPoint, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
         var medications = new List<MedicationRequest>();
         var criteria = new [] { $"patient={patientId}" }; 
-        Bundle bundle = client.Search<MedicationRequest>(criteria);
+        Bundle? bundle = await client.SearchAsync<MedicationRequest>(criteria);
         while (bundle != null)
         {
             foreach (Bundle.EntryComponent ent in bundle.Entry)
@@ -93,12 +91,12 @@ public class FhirClientHelper
                     medications.Add(med);
                 }
             }
-            bundle = client.Continue(bundle, PageDirection.Next);
+            bundle = await client.ContinueAsync(bundle, PageDirection.Next);
         }
         return medications;
     }
     
-    public static Bundle? GetIPSDocumentForPatient(string serverEndPoint, string patientId)
+    public static async Task<Bundle?> GetIPSDocumentForPatientAsync(string serverEndPoint, string patientId)
     {
         var client = new FhirClient(serverEndPoint, FhirClientSettings.CreateDefault(), new LoggingHandler(new HttpClientHandler()));
         var patientLocation = ResourceIdentity.Build("Patient", patientId);
@@ -107,7 +105,7 @@ public class FhirClientHelper
         try
         {
             Resource? returnedResource = null;
-            returnedResource = client.InstanceOperation(
+            returnedResource = await client.InstanceOperationAsync(
                     patientLocation,
                     "summary",
                     par,

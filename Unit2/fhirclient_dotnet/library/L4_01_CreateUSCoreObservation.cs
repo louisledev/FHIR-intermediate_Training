@@ -27,7 +27,7 @@ namespace fhirclient_dotnet
         string CodedResultSNOMEDDisplay
         )
         {
-            Patient? patient = FhirClientHelper.GetPatientById(ServerEndpoint, PatientIdentifierSystem, PatientIdentifierValue);
+            Patient? patient = FhirClientHelper.GetPatientByIdAsync(ServerEndpoint, PatientIdentifierSystem, PatientIdentifierValue).Result;
             if (patient == null)
             {
                 return "Error:Patient_Not_Found";

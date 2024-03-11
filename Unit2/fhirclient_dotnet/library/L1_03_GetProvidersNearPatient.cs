@@ -16,7 +16,7 @@ namespace fhirclient_dotnet
          string IdentifierValue
          )
          {
-             Patient? patient = FhirClientHelper.GetPatientById(ServerEndPoint, IdentifierSystem, IdentifierValue);
+             Patient? patient = FhirClientHelper.GetPatientByIdAsync(ServerEndPoint, IdentifierSystem, IdentifierValue).Result;
              if (patient == null)
              {
                  return "Error:Patient_Not_Found";
@@ -36,7 +36,7 @@ namespace fhirclient_dotnet
                  return $"Phone:{phone}|{address}|{specialty}";
              };
              
-             var practitioners = FhirClientHelper.SearchPractitionersByCriteria(ServerEndPoint, new []{ $"address-city={city}"} ).ToList();
+             var practitioners = FhirClientHelper.SearchPractitionersByCriteriaAsync(ServerEndPoint, new []{ $"address-city={city}"} ).Result.ToList();
                 if (practitioners.Count == 0)
                 {
                     return "Error:No_Provider_In_Patient_City";

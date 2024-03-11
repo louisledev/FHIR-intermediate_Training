@@ -10,7 +10,7 @@ namespace fhirclient_dotnet
          string IdentifierSystem,
          string IdentifierValue)
          {
-            Patient? patient= FhirClientHelper.GetPatientById(ServerEndPoint, IdentifierSystem, IdentifierValue);
+            Patient? patient= FhirClientHelper.GetPatientByIdAsync(ServerEndPoint, IdentifierSystem, IdentifierValue).Result;
             if (patient == null)
                 return "Error:Patient_Not_Found";
             var emailList = patient.Telecom
