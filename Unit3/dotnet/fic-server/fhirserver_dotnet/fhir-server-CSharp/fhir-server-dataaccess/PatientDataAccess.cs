@@ -127,6 +127,12 @@ namespace fhir_server_dataaccess
                                 include=false;
                             }
                             break;
+                        case LegacyFilter.field.email:
+                            if (item.PRSN_EMAIL.ToLower() != c.value.ToLower())
+                            {
+                                include=false;
+                            }
+                            break;
                     default:
                         break;
                     }

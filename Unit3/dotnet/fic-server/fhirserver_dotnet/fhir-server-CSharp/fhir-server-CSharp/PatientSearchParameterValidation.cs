@@ -79,8 +79,6 @@ namespace fhir_server_CSharp
             }
             else
             {
-                
-
                 if (request.QueryString != null && request.QueryString.Count > 0)
                 {
                     foreach (var param in request.QueryString)
@@ -221,6 +219,62 @@ namespace fhir_server_CSharp
                                  rtnValue=true;   
                             
                         }
+                        else if (param.ToString().Equals("telecom", StringComparison.OrdinalIgnoreCase))
+                        {
+                            //check the case now;
+                            if (!param.ToString().Equals("telecom", StringComparison.Ordinal))
+                            {
+                                rtnValue = false;
+                                Program.HttpStatusCodeForResponse = (int)HttpStatusCode.BadRequest;
+                                operation = Utilz.getErrorOperationOutcome($"Unknown search parameter \"{param}\". Value search parameters for this search are: [_id, birthdate, email, telecom, family, gender, name, identifier]");
+                                break;
+                            }
+
+                            var value = request.QueryString[param.ToString()];
+                            if (!TryParseTelecom(value, out string telecomSystem, out string telecomValue))
+                            {
+                                rtnValue = false;
+                                Program.HttpStatusCodeForResponse = (int)HttpStatusCode.BadRequest;
+                                operation = Utilz.getErrorOperationOutcome($"Telecom '{value}' is not a valid for Patient resource.");
+                                break;
+                            }
+
+                            if (telecomSystem.ToLower() != "email")
+                            {
+                                rtnValue = false;
+                                Program.HttpStatusCodeForResponse = (int)HttpStatusCode.NotImplemented;
+                                const string msg = "HTTP 501 Not Implemented: The underlying server only handles email addresses for the patients, thus search by system=phone is not implemented";
+                                operation = Utilz.getErrorOperationOutcome(msg);
+                                break;
+                            }
+                            
+                            LegacyFilter sc=new LegacyFilter();
+                            sc.criteria=LegacyFilter.field.email;
+                            sc.value=telecomValue;
+                            criteria.Add(sc);
+                            rtnValue=true;   
+                            
+                        }
+                        else if (param.ToString().Equals("email", StringComparison.OrdinalIgnoreCase))
+                        {
+                            //check the case now;
+                            if (!param.ToString().Equals("email", StringComparison.Ordinal))
+                            {
+                                rtnValue = false;
+                                Program.HttpStatusCodeForResponse = (int)HttpStatusCode.BadRequest;
+                                operation = Utilz.getErrorOperationOutcome($"Unknown search parameter \"{param}\". Value search parameters for this search are: [_id, birthdate, email, telecom, family, gender, name, identifier]");
+                                break;
+                            }
+
+                            var value = request.QueryString[param.ToString()];
+                            
+                            LegacyFilter sc=new LegacyFilter();
+                            sc.criteria=LegacyFilter.field.email;
+                            sc.value=value;
+                            criteria.Add(sc);
+                            rtnValue=true;   
+                            
+                        }
                         else
                         {
                             rtnValue = false;
@@ -237,5 +291,28 @@ namespace fhir_server_CSharp
             return rtnValue;
         }
 
+        private static bool TryParseTelecom(string telecom, out string system, out string value)
+        {
+            system = null;
+            value = null;
+            
+            if (string.IsNullOrEmpty(telecom))
+                return false;
+
+            var parts = telecom.Split('|');
+            if (parts.Length == 1)
+            {
+                system = "email";
+                value = parts[0];
+                return true;
+            }
+            
+            if (parts.Length != 2)
+                return false;
+
+            system = parts[0];
+            value = parts[1];
+            return true;
+        }
     }
 }
