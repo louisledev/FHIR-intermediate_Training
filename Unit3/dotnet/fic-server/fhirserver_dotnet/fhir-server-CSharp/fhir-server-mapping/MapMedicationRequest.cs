@@ -19,7 +19,7 @@ namespace fhir_server_mapping
             item.criteria=LegacyFilter.field._id;
             item.value=PatientId;
             criteria.Add(item);
-            List<LegacyPerson> p=PatientDataAccess.GetPerson(criteria) ;
+            List<LegacyPerson> p=PersonDataAccess.GetPerson(criteria) ;
             if (p.Count>0)
             {
                 display=p[0].PRSN_LAST_NAME+" "+p[0].PRSN_FIRST_NAME;

@@ -2,7 +2,6 @@ namespace fhirserver_dotnet_library
 {
     public  class MyConfiguration
     {
-
          public string ServerEndpoint{get;}=
             "http://localhost:5834/api/FHIR";
          public string ValidationServerEndpoint{get;}=
