@@ -1,9 +1,7 @@
-using Hl7.Fhir.Model; 
-using Hl7.Fhir.Rest; 
+using Hl7.Fhir.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using Hl7.Fhir.Utility;
 
 namespace fhirclient_dotnet
 {
@@ -30,22 +28,9 @@ namespace fhirclient_dotnet
             immunization.Meta.Profile = new string[] { "http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization" };
 
             immunization.PrimarySource = true;
-            bool result = Enum.TryParse(ImmunizationStatusCode, true, out Immunization.ImmunizationStatusCodes status);
-            
-            switch (ImmunizationStatusCode)
-            {
-                case "completed":
-                    immunization.Status = Immunization.ImmunizationStatusCodes.Completed;
-                    break;
-                case "not-done":
-                    immunization.Status = Immunization.ImmunizationStatusCodes.NotDone;
-                    break;
-                case "entered-in-error":
-                    immunization.Status = Immunization.ImmunizationStatusCodes.EnteredInError;
-                    break;
-                default:
-                    return "Error: Invalid Immunization Status";
-            }
+
+            var status = EnumUtility.ParseLiteral<Immunization.ImmunizationStatusCodes>(ImmunizationStatusCode, ignoreCase: true);
+            immunization.Status = status;
             immunization.Occurrence = new FhirDateTime(ImmunizationDateTime);
             immunization.Patient = new ResourceReference()
             {
