@@ -481,7 +481,8 @@ namespace fhir_server_CSharp
                 }
                 else
                 {
-                    strResponse = fhir_server_mapping.MapPractitionerBundle.GetPeopleBundle(data, request.Url.ToString());
+                    var filteredData = data.Where(p => PractitionerDataAccess.IsPractitioner(p.PRSN_ID)).ToList();
+                    strResponse = fhir_server_mapping.MapPractitionerBundle.GetPeopleBundle(filteredData, request.Url.ToString());
                 }
             }
 

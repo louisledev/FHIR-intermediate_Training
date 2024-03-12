@@ -134,6 +134,15 @@ namespace fhir_server_CSharp
                             {
                                 search_value = request.QueryString[param.ToString()];
                             }
+                            
+                            if (personType == "Practitioner" && search_type.ToLower() != "npi")
+                            {
+                                rtnValue = false;
+                                Program.HttpStatusCodeForResponse = (int)HttpStatusCode.BadRequest;
+                                string msg = $"HTTP 400 Bad Request: Practitioners can only be found knowing the NPI identifier - You are specifying : {search_type.ToUpper()}";
+                                operation = Utilz.getErrorOperationOutcome(msg);
+                                break;
+                            }
 
                             if (!string.IsNullOrEmpty(search_type) && search_type.Equals("ID"))
                             {

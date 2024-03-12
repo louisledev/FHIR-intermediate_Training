@@ -45,7 +45,7 @@ namespace fhirserver_dotnet_library
             MyConfiguration c = new MyConfiguration();
             var server = c.ServerEndpoint;
             String rm = testhelper.PractitionerSearch(server,"name","Lennon");
-            return rm;
+            return rm;  
         
 
         }
