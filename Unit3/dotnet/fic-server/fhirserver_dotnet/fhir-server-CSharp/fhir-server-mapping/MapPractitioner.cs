@@ -3,9 +3,9 @@ using Hl7.Fhir.Model;
 
 namespace fhir_server_mapping
 {
-    public static class MapPatient
+    public static class MapPractitioner
     {
-        public static Patient GetFHIRPatientResource(fhir_server_entity_model.LegacyPerson person) 
+        public static Practitioner GetFHIRPractitionerResource(fhir_server_entity_model.LegacyPerson person) 
         {
             List<Identifier> identifiers = new List<Identifier>();
             List<fhir_server_entity_model.LegacyPersonIdentifier> personIdentifiers = fhir_server_dataaccess.PersonDataAccess.GetPersonDocType(person.PRSN_ID);
@@ -21,12 +21,12 @@ namespace fhir_server_mapping
                 });
             }
 
-            Patient p = new Patient()
+            Practitioner p = new Practitioner()
             {
                 Id = person.PRSN_ID.ToString(),
                 Meta = new Meta()
                 {
-                    Profile = new List<string>() { "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" }
+                    Profile = new List<string>() { "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" }
                 },
                 Text = new Narrative() 
                 { 

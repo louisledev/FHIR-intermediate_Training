@@ -2,7 +2,6 @@ namespace fhirserver_dotnet_library
 {
     public  class MyConfiguration
     {
-
          public string ServerEndpoint{get;}=
             "http://localhost:5834/api/FHIR";
          public string ValidationServerEndpoint{get;}=
@@ -15,10 +14,10 @@ namespace fhirserver_dotnet_library
          public string MSG_PractitionerTelecomSearchEmailOnly="HTTP 501 Not Implemented: The underlying server only handles email addresses for the practitioners, thus search by system=phone is not implemented";
          public string MSG_OpioidWarning="WARNINGS - Limitations of use - Because of the risks associated with the use of opioids, [Product] should only be used in patients for whom other treatment options, including non-opioid analgesics, are ineffective, not tolerated or otherwise inadequate to provide appropriate management of pain";
         public string StudentId{get;}=
-             "kaminker.diego@gmail.com";
+             "louis.latour@latourdev.net";
         
         public string StudentName{get;}=
-            "Diego Kaminker";    
+            "Louis Latour";    
         
     }
 

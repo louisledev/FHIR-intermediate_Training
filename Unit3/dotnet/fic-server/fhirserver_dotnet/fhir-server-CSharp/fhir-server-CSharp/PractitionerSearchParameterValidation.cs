@@ -5,11 +5,11 @@ using System.Net;
 
 namespace fhir_server_CSharp
 {
-    public static class PatientSearchParameterValidation
+    public static class PractitionerSearchParameterValidation
     {
         public static bool ValidateSearchParams(HttpListenerRequest request, ref bool hardIdSearch, out DomainResource operation, out List<LegacyFilter> criteria)
         {
-            return PersonSearchParameterValidation.ValidateSearchParams(request, "Patient", ref hardIdSearch, out operation, out criteria);
+            return PersonSearchParameterValidation.ValidateSearchParams(request, "Practitioner", ref hardIdSearch, out operation, out criteria);
         }
     }
 }
